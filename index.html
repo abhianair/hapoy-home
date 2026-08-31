@@ -271,15 +271,21 @@
     padding: 48px 40px;
     text-align: center;
   }
-  :root:not([data-theme="light"]) .cta-band,
-  [data-theme="dark"] .cta-band { background: var(--surface); border: 1px solid var(--navy-line); }
   .cta-band h2 { color: var(--surface); font-size: clamp(22px, 3vw, 28px); }
-  :root:not([data-theme="light"]) .cta-band h2,
-  [data-theme="dark"] .cta-band h2 { color: var(--navy); }
   .cta-band p { color: rgba(255,255,255,0.72); margin-top: 10px; font-size: 14.5px; }
-  :root:not([data-theme="light"]) .cta-band p,
-  [data-theme="dark"] .cta-band p { color: var(--navy-muted); }
   .cta-band .hero-ctas { justify-content: center; margin-top: 26px; }
+  .cta-band .ghost { color: var(--surface); border-color: rgba(255,255,255,0.35); }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .cta-band { background: var(--surface); border: 1px solid var(--navy-line); }
+    :root:not([data-theme="light"]) .cta-band h2 { color: var(--navy); }
+    :root:not([data-theme="light"]) .cta-band p { color: var(--navy-muted); }
+    :root:not([data-theme="light"]) .cta-band .ghost { color: var(--navy); border-color: var(--navy-line); }
+  }
+  [data-theme="dark"] .cta-band { background: var(--surface); border: 1px solid var(--navy-line); }
+  [data-theme="dark"] .cta-band h2 { color: var(--navy); }
+  [data-theme="dark"] .cta-band p { color: var(--navy-muted); }
+  [data-theme="dark"] .cta-band .ghost { color: var(--navy); border-color: var(--navy-line); }
 
   /* ---------- Footer ---------- */
   footer {
@@ -461,8 +467,8 @@
         <h2>Hapoy is heading to Google Play.</h2>
         <p>We're finishing up final release steps — check back soon, or read how we handle your data below.</p>
         <div class="hero-ctas">
-          <a class="ghost" style="color:#FFFBF6; border-color:rgba(255,255,255,0.35);" href="https://abhianair.github.io/hapoy-legal/#privacy">Privacy Policy</a>
-          <a class="ghost" style="color:#FFFBF6; border-color:rgba(255,255,255,0.35);" href="https://abhianair.github.io/hapoy-legal/#terms">Terms of Use</a>
+          <a class="ghost" href="https://abhianair.github.io/hapoy-legal/#privacy">Privacy Policy</a>
+          <a class="ghost" href="https://abhianair.github.io/hapoy-legal/#terms">Terms of Use</a>
         </div>
       </div>
     </section>
