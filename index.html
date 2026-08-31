@@ -177,12 +177,24 @@
   }
   .hero-ctas .ghost:hover { color: var(--orange-ink); border-color: var(--orange-ink); }
 
-  /* ---------- Hero radius illustration ---------- */
+  /* ---------- Hero map illustration ---------- */
   .radius-art { display: flex; align-items: center; justify-content: center; }
-  .radius-stage { position: relative; width: 100%; max-width: 380px; }
+  .radius-stage {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--navy-line);
+    box-shadow: 0 18px 40px rgba(0,43,92,0.08);
+  }
   .radius-stage svg { display: block; width: 100%; height: auto; }
-  .ring { fill: none; stroke: var(--navy-line); stroke-dasharray: 5 7; }
-  .ring-fill { fill: var(--surface-2); }
+  .map-ground { fill: var(--surface-2); }
+  .map-park { fill: var(--navy-faint); }
+  .map-road { fill: none; stroke: var(--surface); }
+  .map-road.minor { stroke-width: 5; }
+  .map-road.major { stroke-width: 9; }
+  .map-block { fill: var(--surface); }
   .pin-in circle.dot { fill: var(--orange); }
   .pin-label {
     font: 600 10.5px "Roboto", sans-serif;
@@ -205,7 +217,7 @@
     .you-pulse { animation: none; opacity: 0; }
   }
 
-  /* ---------- Sample "happening" chips over the radius map ---------- */
+  /* ---------- Sample "happening" chips pinned on the map ---------- */
   .event-chip {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -216,7 +228,7 @@
     border: 1px solid var(--navy-line);
     border-radius: 9999px;
     padding: 6px 12px 6px 8px;
-    box-shadow: 0 6px 16px rgba(0,43,92,0.10);
+    box-shadow: 0 6px 16px rgba(0,43,92,0.14);
     white-space: nowrap;
   }
   .event-chip .dot {
@@ -233,10 +245,6 @@
     font: 500 10.5px "Roboto", sans-serif;
     color: var(--navy-muted);
   }
-  .event-chip.out {
-    opacity: 0.6;
-  }
-  .event-chip.out .dot { background: var(--navy-muted); }
 
   /* ---------- Section shell ---------- */
   section { padding: 56px 0; }
@@ -408,9 +416,20 @@
         <div class="radius-art" aria-hidden="true">
           <div class="radius-stage">
             <svg viewBox="0 0 320 320">
-              <circle class="ring-fill" cx="160" cy="160" r="128" opacity="0.5"/>
-              <circle class="ring" cx="160" cy="160" r="128"/>
-              <circle class="ring" cx="160" cy="160" r="82"/>
+              <rect class="map-ground" x="0" y="0" width="320" height="320"/>
+              <path class="map-park" d="M10,230 C40,198 94,208 104,250 C114,292 62,322 18,312 C-14,304 -16,256 10,230 Z"/>
+              <path class="map-road major" d="M0,140 C90,120 140,182 202,150 C250,126 296,112 322,110"/>
+              <path class="map-road major" d="M62,-4 C40,80 102,140 90,222 C82,278 118,316 132,324"/>
+              <path class="map-road minor" d="M90,220 L224,242"/>
+              <path class="map-road minor" d="M202,150 L262,232"/>
+              <path class="map-road minor" d="M40,80 L142,60"/>
+              <path class="map-road minor" d="M132,20 L232,40"/>
+              <rect class="map-block" x="18" y="26" width="42" height="30" rx="8"/>
+              <rect class="map-block" x="248" y="36" width="38" height="28" rx="8"/>
+              <rect class="map-block" x="184" y="92" width="50" height="36" rx="9"/>
+              <rect class="map-block" x="76" y="166" width="54" height="40" rx="9"/>
+              <rect class="map-block" x="176" y="186" width="52" height="34" rx="9"/>
+              <rect class="map-block" x="244" y="252" width="48" height="36" rx="9"/>
               <circle class="you-pulse" cx="160" cy="160" r="14"/>
               <g class="pin-in">
                 <circle class="dot" cx="160" cy="160" r="7"/>
@@ -431,10 +450,6 @@
               <span class="dot"></span>
               <span class="name">Store Sale</span>
               <span class="dist">6.8 km</span>
-            </div>
-            <div class="event-chip out" style="left:84.4%; top:21.9%">
-              <span class="dot"></span>
-              <span class="name">Out of range</span>
             </div>
           </div>
         </div>
