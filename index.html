@@ -179,11 +179,11 @@
 
   /* ---------- Hero radius illustration ---------- */
   .radius-art { display: flex; align-items: center; justify-content: center; }
-  .radius-art svg { width: 100%; max-width: 380px; height: auto; }
+  .radius-stage { position: relative; width: 100%; max-width: 380px; }
+  .radius-stage svg { display: block; width: 100%; height: auto; }
   .ring { fill: none; stroke: var(--navy-line); stroke-dasharray: 5 7; }
   .ring-fill { fill: var(--surface-2); }
   .pin-in circle.dot { fill: var(--orange); }
-  .pin-out circle.dot { fill: var(--navy-muted); }
   .pin-label {
     font: 600 10.5px "Roboto", sans-serif;
     fill: var(--navy);
@@ -204,6 +204,39 @@
   @media (prefers-reduced-motion: reduce) {
     .you-pulse { animation: none; opacity: 0; }
   }
+
+  /* ---------- Sample "happening" chips over the radius map ---------- */
+  .event-chip {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--navy-line);
+    border-radius: 9999px;
+    padding: 6px 12px 6px 8px;
+    box-shadow: 0 6px 16px rgba(0,43,92,0.10);
+    white-space: nowrap;
+  }
+  .event-chip .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .event-chip .name {
+    font: 600 11.5px "Roboto", sans-serif;
+    color: var(--navy);
+  }
+  .event-chip .dist {
+    font: 500 10.5px "Roboto", sans-serif;
+    color: var(--navy-muted);
+  }
+  .event-chip.out {
+    opacity: 0.6;
+  }
+  .event-chip.out .dot { background: var(--navy-muted); }
 
   /* ---------- Section shell ---------- */
   section { padding: 56px 0; }
@@ -373,32 +406,37 @@
         </div>
 
         <div class="radius-art" aria-hidden="true">
-          <svg viewBox="0 0 320 320">
-            <circle class="ring-fill" cx="160" cy="160" r="128" opacity="0.5"/>
-            <circle class="ring" cx="160" cy="160" r="128"/>
-            <circle class="ring" cx="160" cy="160" r="82"/>
-            <circle class="you-pulse" cx="160" cy="160" r="14"/>
-            <g class="pin-in">
-              <circle class="dot" cx="160" cy="160" r="7"/>
-              <text class="pin-label" x="160" y="184" text-anchor="middle">You</text>
-            </g>
-            <g class="pin-in">
-              <circle class="dot" cx="205" cy="120" r="6"/>
-              <text class="pin-label" x="205" y="106" text-anchor="middle">2.1 km</text>
-            </g>
-            <g class="pin-in">
-              <circle class="dot" cx="110" cy="190" r="6"/>
-              <text class="pin-label" x="110" y="212" text-anchor="middle">4.6 km</text>
-            </g>
-            <g class="pin-in">
-              <circle class="dot" cx="200" cy="205" r="6"/>
-              <text class="pin-label" x="200" y="227" text-anchor="middle">6.8 km</text>
-            </g>
-            <g class="pin-out">
-              <circle class="dot" cx="270" cy="70" r="6"/>
-              <text class="pin-label" x="270" y="56" text-anchor="middle" opacity="0.55">Out of range</text>
-            </g>
-          </svg>
+          <div class="radius-stage">
+            <svg viewBox="0 0 320 320">
+              <circle class="ring-fill" cx="160" cy="160" r="128" opacity="0.5"/>
+              <circle class="ring" cx="160" cy="160" r="128"/>
+              <circle class="ring" cx="160" cy="160" r="82"/>
+              <circle class="you-pulse" cx="160" cy="160" r="14"/>
+              <g class="pin-in">
+                <circle class="dot" cx="160" cy="160" r="7"/>
+                <text class="pin-label" x="160" y="184" text-anchor="middle">You</text>
+              </g>
+            </svg>
+            <div class="event-chip" style="left:64.1%; top:37.5%">
+              <span class="dot"></span>
+              <span class="name">Flea Market</span>
+              <span class="dist">2.1 km</span>
+            </div>
+            <div class="event-chip" style="left:34.4%; top:59.4%">
+              <span class="dot"></span>
+              <span class="name">Pottery Class</span>
+              <span class="dist">4.6 km</span>
+            </div>
+            <div class="event-chip" style="left:62.5%; top:64.1%">
+              <span class="dot"></span>
+              <span class="name">Store Sale</span>
+              <span class="dist">6.8 km</span>
+            </div>
+            <div class="event-chip out" style="left:84.4%; top:21.9%">
+              <span class="dot"></span>
+              <span class="name">Out of range</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
